@@ -1,21 +1,26 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Frog : MonoBehaviour
 {
 
-    public float speed = 10;
+    public float speed = 5f;
     public float xDist = 0;
     public float yDist = 0;
+    public Transform target;
+    public Rigidbody2D body;
+
     public float cameraWidth = 0;
     void Start()
     {
-        Camera camera = Camera.main;
-        cameraWidth = camera.orthographicSize * camera.aspect * 1.3f;
+        body = GetComponent<Rigidbody2D>();
+
+        cameraWidth = Camera.main.orthographicSize * Camera.main.aspect;
         xDist = cameraWidth / 5;
-        yDist = camera.orthographicSize / 2;
+        yDist = Camera.main.orthographicSize / 2;
     }
 
     // Update is called once per frame
@@ -23,27 +28,44 @@ public class Frog : MonoBehaviour
     {
         MoveHorizontal();
         MoveVertical();
+        transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
     }
     public void MoveHorizontal()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            transform.Translate(-xDist, 0, 0);
+            target.Translate(-xDist, 0, 0);
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            transform.Translate(xDist, 0, 0);
+            target.Translate(xDist, 0, 0);
         }
     }
     void MoveVertical()
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            transform.Translate(0, yDist, 0);
+            target.Translate(0, yDist, 0);
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            transform.Translate(0, -yDist, 0);
+            target.Translate(0, -yDist, 0);
         }
     }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        if(collision.gameObject.CompareTag("Vehicles"))
+        {
+            Vehicles vehicles = collision.GetComponent<Vehicles>();
+            if (vehicles != null)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+    }
+
 }

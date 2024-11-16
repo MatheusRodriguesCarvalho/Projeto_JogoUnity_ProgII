@@ -8,13 +8,15 @@ public class Vehicles : MonoBehaviour
 
     //public GameObject[] lista;
     public int speed = -3;
-    public float y = 0;
-    public float cameraWidth = 0;
+    private float initialY = 0;
+    private float cameraWidth = 0;
+    private Rigidbody2D body;
     void Start()
     {
-        Camera camera = Camera.main;
-        cameraWidth = camera.orthographicSize * camera.aspect * 1.3f;
-        y = transform.position.y;
+        body = GetComponent<Rigidbody2D>();
+
+        cameraWidth = Camera.main.orthographicSize * Camera.main.aspect * 1.3f;
+        initialY = transform.position.y;
     }
     void Update()
     {
@@ -25,6 +27,6 @@ public class Vehicles : MonoBehaviour
 
     void OnBecameInvisible()
     {
-        transform.position = new Vector3(cameraWidth, y);
+        transform.position = new Vector3(cameraWidth, initialY);
     }
 }
