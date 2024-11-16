@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5393910237871130619}
   - component: {fileID: 3722087678495590716}
   - component: {fileID: 8753077664998798345}
+  - component: {fileID: 8280999831623235239}
   m_Layer: 0
   m_Name: car_green_0
   m_TagString: Vehicles
@@ -161,3 +162,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8280999831623235239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7620027339582393211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abae9fa4a1c391a4592378f92399c66c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: -7
+  y: 0
+  cameraWidth: 0
