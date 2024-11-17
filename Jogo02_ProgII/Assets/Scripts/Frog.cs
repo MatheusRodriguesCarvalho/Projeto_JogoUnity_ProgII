@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -18,29 +19,30 @@ public class Frog : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        target = GetComponent<Transform>();
 
         cameraWidth = Camera.main.orthographicSize * Camera.main.aspect;
         xDist = cameraWidth * 3f / 12.5f;
         yDist = Camera.main.orthographicSize / 5f * 2f;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        target.position = this.transform.position;
         
         MoveHorizontal();
         MoveVertical();
 
-        if (target.position.x < 7 && target.position.x > -7)
+        if (target.position.x > 7 || target.position.x < -7)
         {
-            //transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-            transform.position = Vector3.MoveTowards(transform.position, target.position, speed);
-            //transform.position = target.position;
+            target.position = transform.position;
         }
         else 
         {
-            target.position = transform.position;
+            //transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            //transform.position = Vector3.MoveTowards(transform.position, target.position, speed);
+            transform.position = target.position;
         }
 
     }
