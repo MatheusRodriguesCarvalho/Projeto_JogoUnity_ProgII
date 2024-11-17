@@ -15,7 +15,7 @@ public class Frog : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
 
-        Vector3 target = new Vector3(0f, 0f, 0f);
+        target = new Vector3(0f, -4f, 0f);
     }
 
     // Update is called once per frame
@@ -23,30 +23,50 @@ public class Frog : MonoBehaviour
     {
         MoveHorizontal();
         MoveVertical();
-        transform.position += new Vector3(target.x, target.y, 0f);
-        target = new Vector3(0f, 0f);
+        MovementInbounds();
+        transform.position = new Vector3(target.x, target.y, 0f);
+    }
+
+    public void MovementInbounds()
+    {
+        if (target.x > 9)
+        {
+            target.x -= 2f;
+        }
+        else if (target.x < -9)
+        {
+            target.x += 2f;
+        }
+        else if (target.y > 5)
+        {
+            target.y -= 2f;
+        }
+        else if (target.y < -5)
+        {
+            target.y += 2f;
+        }
     }
 
     public void MoveHorizontal()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            target.x = -2f;
+            target.x -= 2f;
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            target.x = 2f;
+            target.x += 2f;
         }
     }
     public void MoveVertical()
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            target.y = 2f;
+            target.y += 2f;
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            target.y =  -2f;
+            target.y -= 2f;
         }
     }
 
