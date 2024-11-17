@@ -4,68 +4,76 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Frog : MonoBehaviour
 {
 
     public float speed = 5f;
-    public float xDist = 0;
-    public float yDist = 0;
+    public float xDist = 2;
+    public float yDist = 2;
 
-    public Transform target;
+    public float smoothTime = 0.1f;
+    private Vector3 velocity;
+
     public Rigidbody2D body;
 
     public float cameraWidth = 0;
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        target = GetComponent<Transform>();
 
-        cameraWidth = Camera.main.orthographicSize * Camera.main.aspect;
-        xDist = cameraWidth * 3f / 12.5f;
-        yDist = Camera.main.orthographicSize / 5f * 2f;
-
+        //cameraWidth = Camera.main.orthographicSize * Camera.main.aspect;
+        //xDist = cameraWidth * 3f / 12.5f;
+        //yDist = Camera.main.orthographicSize / 5f * 2f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        MoveHorizontal();
-        MoveVertical();
 
-        if (target.position.x > 7 || target.position.x < -7)
+        Vector3 targetPosition = transform.position + new Vector3(MoveHorizontal(), MoveVertical(), 0f) * speed;
+
+        if (targetPosition.x > -7)
         {
-            target.position = transform.position;
+            Debug.Log("dentro da tela");
+            //transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
         }
-        else 
+        else
         {
-            //transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-            //transform.position = Vector3.MoveTowards(transform.position, target.position, speed);
-            transform.position = target.position;
+            Debug.Log("fora da tela");
         }
 
     }
-    public void MoveHorizontal()
+
+    public float MoveHorizontal()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            target.Translate(-xDist, 0, 0);
+            return -xDist;
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            target.Translate(xDist, 0, 0);
+            return xDist;
+        }
+        else
+        {
+            return 0f;
         }
     }
-    void MoveVertical()
+    public float MoveVertical()
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            target.Translate(0, yDist, 0);
+            return yDist;
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            target.Translate(0, -yDist, 0);
+            return -yDist;
+        }
+        else
+        {
+            return 0f;
         }
     }
 
