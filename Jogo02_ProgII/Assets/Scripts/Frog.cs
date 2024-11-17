@@ -8,72 +8,45 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Frog : MonoBehaviour
 {
-
-    public float speed = 5f;
-    public float xDist = 2;
-    public float yDist = 2;
-
-    public float smoothTime = 0.1f;
-    private Vector3 velocity;
-
     public Rigidbody2D body;
+    public Vector3 target;
 
-    public float cameraWidth = 0;
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
 
-        //cameraWidth = Camera.main.orthographicSize * Camera.main.aspect;
-        //xDist = cameraWidth * 3f / 12.5f;
-        //yDist = Camera.main.orthographicSize / 5f * 2f;
+        Vector3 target = new Vector3(0f, 0f, 0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        Vector3 targetPosition = transform.position + new Vector3(MoveHorizontal(), MoveVertical(), 0f) * speed;
-
-        if (targetPosition.x > -7)
-        {
-            Debug.Log("dentro da tela");
-            //transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
-        }
-        else
-        {
-            Debug.Log("fora da tela");
-        }
-
+        MoveHorizontal();
+        MoveVertical();
+        transform.position += new Vector3(target.x, target.y, 0f);
+        target = new Vector3(0f, 0f);
     }
 
-    public float MoveHorizontal()
+    public void MoveHorizontal()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            return -xDist;
+            target.x = -2f;
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            return xDist;
-        }
-        else
-        {
-            return 0f;
+            target.x = 2f;
         }
     }
-    public float MoveVertical()
+    public void MoveVertical()
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            return yDist;
+            target.y = 2f;
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            return -yDist;
-        }
-        else
-        {
-            return 0f;
+            target.y =  -2f;
         }
     }
 
@@ -85,7 +58,8 @@ public class Frog : MonoBehaviour
             Vehicles vehicles = collision.GetComponent<Vehicles>();
             if (vehicles != null)
             {
-                Destroy(gameObject);
+                Debug.Log("Touched");
+                //Destroy(gameObject);
             }
         }
 
