@@ -24,7 +24,6 @@ public class Vehicles : MonoBehaviour
         transform.Translate(move, 0, 0);
 
     }
-
     void OnBecameInvisible()
     {
         transform.position = new Vector3(cameraWidth, initialY);

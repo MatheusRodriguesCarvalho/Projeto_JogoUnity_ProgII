@@ -4,12 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
 
 public class Frog : MonoBehaviour
 {
     public Rigidbody2D body;
     public Vector3 target;
+    public int points;
 
     void Start()
     {
@@ -26,7 +28,6 @@ public class Frog : MonoBehaviour
         MovementInbounds();
         transform.position = new Vector3(target.x, target.y, 0f);
     }
-
     public void MovementInbounds()
     {
         if (target.x > 9)
@@ -46,7 +47,6 @@ public class Frog : MonoBehaviour
             target.y += 2f;
         }
     }
-
     public void MoveHorizontal()
     {
         if (Input.GetKeyDown(KeyCode.A))
@@ -72,8 +72,7 @@ public class Frog : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-        if(collision.gameObject.CompareTag("Vehicles"))
+        if ( collision.gameObject.CompareTag("Vehicles") )
         {
             Vehicles vehicles = collision.GetComponent<Vehicles>();
             if (vehicles != null)
@@ -82,7 +81,14 @@ public class Frog : MonoBehaviour
                 //Destroy(gameObject);
             }
         }
-
+        if ( collision.gameObject.CompareTag("Fly") )
+        {
+            Fly fly = collision.GetComponent<Fly>();
+            if(fly != null)
+            {
+                fly.replace();
+                points += 1;
+            }
+        }
     }
-
 }

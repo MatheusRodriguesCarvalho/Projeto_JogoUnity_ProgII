@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Vehicles
   - Background
+  - Fly
   layers:
   - Default
   - TransparentFX
