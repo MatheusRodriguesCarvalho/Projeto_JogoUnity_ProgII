@@ -10,6 +10,7 @@ public class Frog : MonoBehaviour
     public float speed = 5f;
     public float xDist = 0;
     public float yDist = 0;
+
     public Transform target;
     public Rigidbody2D body;
 
@@ -26,9 +27,22 @@ public class Frog : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        target.position = this.transform.position;
+        
         MoveHorizontal();
         MoveVertical();
-        transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+
+        if (target.position.x < 7 && target.position.x > -7)
+        {
+            //transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, target.position, speed);
+            //transform.position = target.position;
+        }
+        else 
+        {
+            target.position = transform.position;
+        }
+
     }
     public void MoveHorizontal()
     {
@@ -52,7 +66,6 @@ public class Frog : MonoBehaviour
             target.Translate(0, -yDist, 0);
         }
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
