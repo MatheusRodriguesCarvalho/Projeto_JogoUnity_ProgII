@@ -19,8 +19,8 @@ public class Frog : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
 
         cameraWidth = Camera.main.orthographicSize * Camera.main.aspect;
-        xDist = cameraWidth / 5;
-        yDist = Camera.main.orthographicSize / 2;
+        xDist = cameraWidth * 3f / 12.5f;
+        yDist = Camera.main.orthographicSize / 5f * 2f;
     }
 
     // Update is called once per frame
