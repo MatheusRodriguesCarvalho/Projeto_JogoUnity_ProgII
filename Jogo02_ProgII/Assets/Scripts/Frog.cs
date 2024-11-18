@@ -85,10 +85,10 @@ public class Frog : MonoBehaviour
         }
         else if(collision.gameObject.CompareTag("Fly"))
         {
-            Fly mosquito = collision.GetComponent<Fly>();
-            if(mosquito != null)
+            Fly fly = collision.GetComponent<Fly>();
+            if(fly != null)
             {
-                mosquito.replace();
+                fly.replace();
                 points += 1;
             }
         }
