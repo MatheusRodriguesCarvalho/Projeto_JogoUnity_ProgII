@@ -32,6 +32,7 @@ public class Frog : MonoBehaviour
             transform.position = new Vector3(target.x, target.y, 0f);
         }
     }
+
     public void MovementInbounds()
     {
         if (target.x > 9)
@@ -51,9 +52,10 @@ public class Frog : MonoBehaviour
             target.y += 2f;
         }
     }
+
     public void MoveHorizontal()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
             target.x -= 2f;
         }
@@ -62,6 +64,7 @@ public class Frog : MonoBehaviour
             target.x += 2f;
         }
     }
+
     public void MoveVertical()
     {
         if (Input.GetKeyDown(KeyCode.W))
@@ -76,23 +79,22 @@ public class Frog : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Vehicles"))
+        if (collision.CompareTag("Vehicles"))
         {
             Vehicles vehicles = collision.GetComponent<Vehicles>();
             if (vehicles != null)
             {
                 Debug.Log("Touched");
-                //Debug.Log(vehicles.transform.position);
-                //Debug.Log(vehicles.speed);
+                Debug.Log("Collision with: " + collision.gameObject.name);
                 //Destroy(gameObject);
                 vehicles.StopMovement();
-                //isdead = true; //getting problem, fix it
+                isdead = true;
             }
         }
-        else if(collision.gameObject.CompareTag("Fly"))//esqueci de colocar a tag Fly no bixin, colocar.
+        else if (collision.gameObject.CompareTag("Fly"))
         {
             Fly fly = collision.GetComponent<Fly>();
-            if(fly != null)
+            if (fly != null)
             {
                 fly.replace();
                 points += 1;

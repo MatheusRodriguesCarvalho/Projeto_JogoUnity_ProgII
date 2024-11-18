@@ -26,7 +26,7 @@ public class Fly : MonoBehaviour
         int number;
         do
         {
-            number = Random.Range(min, max);
+            number = Random.Range(min, max + 1);
         } while (number %2 != 0);
         return number;
     }

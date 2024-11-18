@@ -214,6 +214,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1810120764083968450, guid: 2cb90bf3120f5344592bb9b3d9068a13, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1810120764083968450, guid: 2cb90bf3120f5344592bb9b3d9068a13, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
@@ -527,6 +531,10 @@ PrefabInstance:
     - target: {fileID: 7716113950236512924, guid: 7efac63f6f83e724f870cd61b0a18c6e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082089600311508654, guid: 7efac63f6f83e724f870cd61b0a18c6e, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9082089600311508654, guid: 7efac63f6f83e724f870cd61b0a18c6e, type: 3}
       propertyPath: m_IsTrigger
@@ -873,6 +881,7 @@ MonoBehaviour:
   body: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
   points: 0
+  isdead: 0
 --- !u!50 &1708919506
 Rigidbody2D:
   serializedVersion: 4
@@ -881,7 +890,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708919503}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -944,8 +953,8 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.33, y: 0.33}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.05, y: 0.05}
+  m_EdgeRadius: 0.23
 --- !u!212 &1708919508
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1023,6 +1032,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3722087678495590716, guid: 094c4cc701cb7cf46a3c69098319997b, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3722087678495590716, guid: 094c4cc701cb7cf46a3c69098319997b, type: 3}
       propertyPath: m_IsTrigger
       value: 1
