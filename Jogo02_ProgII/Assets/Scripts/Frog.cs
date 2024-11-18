@@ -12,6 +12,7 @@ public class Frog : MonoBehaviour
     public Rigidbody2D body;
     public Vector3 target;
     public int points;
+    public bool isdead = false; // verificar
 
     void Start()
     {
@@ -23,10 +24,13 @@ public class Frog : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveHorizontal();
-        MoveVertical();
-        MovementInbounds();
-        transform.position = new Vector3(target.x, target.y, 0f);
+        if (!isdead)
+        {
+            MoveHorizontal();
+            MoveVertical();
+            MovementInbounds();
+            transform.position = new Vector3(target.x, target.y, 0f);
+        }
     }
     public void MovementInbounds()
     {
@@ -78,9 +82,11 @@ public class Frog : MonoBehaviour
             if (vehicles != null)
             {
                 Debug.Log("Touched");
-                Debug.Log(vehicles.transform.position.x);
+                //Debug.Log(vehicles.transform.position);
+                //Debug.Log(vehicles.speed);
                 //Destroy(gameObject);
-                //vehicles.StopMovement();
+                vehicles.StopMovement();
+                //isdead = true; //getting problem, fix it
             }
         }
         else if(collision.gameObject.CompareTag("Fly"))//esqueci de colocar a tag Fly no bixin, colocar.
