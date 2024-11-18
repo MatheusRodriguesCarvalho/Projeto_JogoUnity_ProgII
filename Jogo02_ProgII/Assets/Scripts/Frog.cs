@@ -83,7 +83,7 @@ public class Frog : MonoBehaviour
                 //vehicles.StopMovement();
             }
         }
-        else if(collision.gameObject.CompareTag("Fly"))
+        else if(collision.gameObject.CompareTag("Fly"))//esqueci de colocar a tag Fly no bixin, colocar.
         {
             Fly fly = collision.GetComponent<Fly>();
             if(fly != null)
