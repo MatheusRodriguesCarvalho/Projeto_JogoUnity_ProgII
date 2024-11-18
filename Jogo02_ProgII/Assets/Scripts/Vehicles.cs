@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Vehicles : MonoBehaviour
 {
-
-    //public GameObject[] lista;
     public int speed = -3;
     private float initialY = 0;
     private float cameraWidth = 0;
@@ -22,10 +20,14 @@ public class Vehicles : MonoBehaviour
     {
         float move = speed * Time.deltaTime;
         transform.Translate(move, 0, 0);
-
     }
     void OnBecameInvisible()
     {
         transform.position = new Vector3(cameraWidth, initialY);
+    }
+
+    public void StopMovement()
+    {
+        speed = 0;
     }
 }

@@ -72,21 +72,23 @@ public class Frog : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ( collision.gameObject.CompareTag("Vehicles") )
+        if(collision.gameObject.CompareTag("Vehicles"))
         {
             Vehicles vehicles = collision.GetComponent<Vehicles>();
             if (vehicles != null)
             {
                 Debug.Log("Touched");
+                Debug.Log(vehicles.transform.position.x);
                 //Destroy(gameObject);
+                //vehicles.StopMovement();
             }
         }
-        if ( collision.gameObject.CompareTag("Fly") )
+        else if(collision.gameObject.CompareTag("Fly"))
         {
-            Fly fly = collision.GetComponent<Fly>();
-            if(fly != null)
+            Fly mosquito = collision.GetComponent<Fly>();
+            if(mosquito != null)
             {
-                fly.replace();
+                mosquito.replace();
                 points += 1;
             }
         }

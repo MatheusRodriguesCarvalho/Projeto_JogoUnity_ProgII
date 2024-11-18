@@ -14,17 +14,10 @@ public class Fly : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
-    {
-        
-    }
-
     public void replace()
     {
         int randomX = GenerateRandomEven(-8, 8);
         int randomY = GenerateRandomEven(-4, 4);
-
-
         transform.position = new Vector3(randomX, randomY, 0f);
     }
 
@@ -37,6 +30,5 @@ public class Fly : MonoBehaviour
         } while (number %2 != 0);
         return number;
     }
-
 
 }
