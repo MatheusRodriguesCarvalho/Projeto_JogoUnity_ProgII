@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     public float speed = 5;
-    public int life = 3;
+    private int life = 5;
 
+    public Text lifeUI;
     public GameObject bala;
     public Rigidbody2D body;
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        lifeUI.text = "Vidas: " + life;
     }
 
     // Update is called once per frame
