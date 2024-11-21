@@ -31,4 +31,12 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private void OnTriggerEnter2D(Collider2D colisor)
+    {
+        if(colisor.gameObject.CompareTag("asteriodTag"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }

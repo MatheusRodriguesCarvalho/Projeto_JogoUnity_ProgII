@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class Player : MonoBehaviour
 {
@@ -49,6 +51,21 @@ public class Player : MonoBehaviour
         {
             float posx = Mathf.Clamp(transform.position.x, -5.6f, 5.6f);
             transform.position = new Vector3(posx, transform.position.y, transform.position.z);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D colisor)
+    {
+
+        if (colisor.gameObject.CompareTag("asteriodTag"))
+        {
+            life -= 1;
+            lifeUI.text = "Vidas: " + life;
+            if (life == 0)
+            {
+                Destroy(gameObject);
+                SceneManager.LoadScene("Menu");
+            }
         }
     }
 
