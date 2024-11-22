@@ -5,25 +5,17 @@ using UnityEngine;
 
 public class Vehicles : MonoBehaviour
 {
-    public int speed = -3;
-    private float initialY = 0;
-    private float cameraWidth = 0;
+    public int speed = 0;
     private Rigidbody2D body;
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        body.velocity = new Vector3(speed, 0f, 0f);
+    }
 
-        cameraWidth = Camera.main.orthographicSize * Camera.main.aspect * 1.3f;
-        initialY = transform.position.y;
-    }
-    void Update()
-    {
-        float move = speed * Time.deltaTime;
-        transform.Translate(move, 0, 0);
-    }
     void OnBecameInvisible()
     {
-        transform.position = new Vector3(cameraWidth, initialY);
+        Destroy(gameObject);
     }
 
     public void StopMovement()
